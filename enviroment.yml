@@ -1,10 +1,9 @@
-name: cs109b
+name: project
 
 channels:
     - conda-forge
 
 dependencies:
-    - arviz
     - imageio
     - ipython
     - jupyterlab
@@ -15,7 +14,6 @@ dependencies:
     - pandas
     - pillow
     - pip
-    - pymc3
     - requests
     - scikit-learn
     - scipy
@@ -27,7 +25,6 @@ dependencies:
     - transformers
 
     - pip:
-        - gap-stat
         - tensorflow_addons
         - tensorflow_datasets
         - tensorflow_hub
