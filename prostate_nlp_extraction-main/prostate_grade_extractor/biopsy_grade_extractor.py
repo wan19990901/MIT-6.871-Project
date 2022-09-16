@@ -111,12 +111,13 @@ class BiopsyGradeExtractor:
 				if 'gleason' in val and found_directional_word and 'm.d.,' not in text_oi_list[idx - 2 : idx + 2]:
 					found_primary_grade = 0; found_secondary_grade = 0; found_plus_sign = 0; found_one_dash = 0
 					# get context around word "gleason"
-					# heuristically choose 15. Gleason score we're after should be included in the next 15 words
+					# heuristically choose 15. Gleason score we're after should be included in the next 15 words（might need to change this)
 					raw_gleason_text = ''.join(text_oi_list[idx:idx + 15]) 
 					
 					# heuristically choose 25. The abstraction info we're after should be included in the next 25 words
 					raw_gleason_cores_contex_joined = ' '.join(text_oi_list[idx:idx + 25])
-					raw_gleason_cores_context  = text_oi_list[idx:idx + 25]
+					raw_gleason_cores_context  = text_oi_list[idx:idx + 25] 
+					# Might try without the code.
 					# get number of positive and total cores
 					if 'of' in raw_gleason_cores_context:
 						for idx_core_word, core_word in enumerate(raw_gleason_cores_context):

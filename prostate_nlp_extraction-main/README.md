@@ -35,16 +35,16 @@ gleason score x+y or
 gleason score x + y or 
 gleason grade x + y or
 gleason x + y or 
-gleason grade of x and y(not yet)
+gleason grade of x and y (not implemented)
 
 2: Total sum (z) of the primary (x) and secondary (y) grades
 
 note: If only total score 7 and no primary or secondary grades available i.e. cannot distinguish grade group 2 or 3, then assign grade group 2.5
 
 
-gleason score of z
+gleason score of z(not implemented)
 gleason z/10
-gleason grade z prostatic adenocarcinoma
+gleason grade z prostatic adenocarcinoma(not implemented)
 score (x+y)=z (such as score (3+4) = 7)
 
 3: Grade group
@@ -53,12 +53,12 @@ Grade group 1: Find patterns on :
 
 Gleasong grade (3/5) (Typo is deliberate)
 gleason 3/5
-gleason score 3 (of 5)
+gleason score 3 (of 5) (not implemented)
 (gleason grade 3/5)
 , gleason grade 3/5,
-adenocarcinoma, gleason grade 3 out of 5, involving
+adenocarcinoma, gleason grade 3 out of 5, involving (not implemented) 
 adenocarcinoma, gleason grade 3/5, present
-gleason grade 3 (score 6 of 10)
+gleason grade 3 (score 6 of 10) (not implemented)
 
 Grade group 3: Find patterns on :
 
@@ -75,7 +75,7 @@ Grade group 5, Find patterns on :
 gleason grade 4-5/5
 
 
-Otherwise:
+Otherwise: (not implemented)
 
 (Note that the Report_text would be the column for the report)
 
