@@ -479,7 +479,7 @@ class BiopsyGradeExtractor:
 			feats_oi = ['Report_Number', 'Report_Text'] + list(feats_oi)
 		else:
 			# if feats_oi is not provided, then just evaluate overall grade group related info
-			feats_oi = ['Report_Number', 'Report_Text', 'primary_grade', 'secondary_grade', 'overall_grade_group', 'overall_grade_merged']
+			feats_oi = ['Report_Number', 'Report_Text', 'primary_grade', 'secondary_grade', 'overall_grade_merged']
 		df_oi = self.df_pathology_with_biopsy[feats_oi].dropna(subset = feats_oi)
 		while continue_eval:
 			if report_numbers_to_query is not None:

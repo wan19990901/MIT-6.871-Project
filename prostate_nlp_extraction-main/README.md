@@ -110,3 +110,5 @@ See more details and examples on the test.ipynb code
 Main doc : https://docs.google.com/document/d/1yJQBFc7R2qA8OsyvmL7ujQLOSHl3u4C9hyqrJxGTlhU/edit
 
 PSA abstraction from progress notes : https://docs.google.com/document/d/1byko7GQjivx3K-Z-RBkr4frgT8l9N0T0d7SO0wFXKA0/edit?usp=sharing
+
+Biopy Grade Extrators: https://docs.google.com/document/d/1aUFjvz8bumhCnSUDJ8w4CtKoNmGBKYTGeq0cMqoOOl0/edit
