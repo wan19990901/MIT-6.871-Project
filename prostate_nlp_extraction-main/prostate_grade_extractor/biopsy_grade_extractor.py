@@ -78,31 +78,31 @@ class BiopsyGradeExtractor:
 			text_oi_list = text_oi.split(' ')
 			found_directional_word = 0; 
 			# declare indicator variables for histology
-			small_cell_carc_ind = 0; neuroendocrine_carc_ind = 0; adenocarcinoma_ind = 0;
+			# small_cell_carc_ind = 0; neuroendocrine_carc_ind = 0; adenocarcinoma_ind = 0;
 			# iterate through words
 			for idx, val in enumerate(text_oi_list):
 				if any(dir_val in val for dir_val in directional_words):
 					found_directional_word = 1
 				# get histology
 				# small cell carcinoma
-				if 'small' in val and 'cell' in text_oi_list[idx+1]:
-					if 'carcinoma' in [txt for txt in text_oi_list[idx + 1:idx + 5]]:
-						text_detect_neg = text_oi_list[idx - 3:idx]
-						det_negation = self._func_det_negation(text_detect_neg)
-						if not det_negation:
-							small_cell_carc_ind = 1
-				# neuroendocrine carcinoma
-				if 'neuroendocrine' in val and 'carcinoma' in text_oi_list[idx + 1]:
-					text_detect_neg = text_oi_list[idx - 3:idx]
-					det_negation = self._func_det_negation(text_detect_neg)
-					if not det_negation:
-						neuroendocrine_carc_ind = 1
-				# adenocarcinoma
-				if 'adenocarcinoma' in val:
-					text_detect_neg = text_oi_list[idx - 3:idx]
-					det_negation = self._func_det_negation(text_detect_neg)
-					if not det_negation:
-						adenocarcinoma_ind = 1
+				# if 'small' in val and 'cell' in text_oi_list[idx+1]:
+				# 	if 'carcinoma' in [txt for txt in text_oi_list[idx + 1:idx + 5]]:
+				# 		text_detect_neg = text_oi_list[idx - 3:idx]
+				# 		det_negation = self._func_det_negation(text_detect_neg)
+				# 		if not det_negation:
+				# 			small_cell_carc_ind = 1
+				# # neuroendocrine carcinoma
+				# if 'neuroendocrine' in val and 'carcinoma' in text_oi_list[idx + 1]:
+				# 	text_detect_neg = text_oi_list[idx - 3:idx]
+				# 	det_negation = self._func_det_negation(text_detect_neg)
+				# 	if not det_negation:
+				# 		neuroendocrine_carc_ind = 1
+				# # adenocarcinoma
+				# if 'adenocarcinoma' in val:
+				# 	text_detect_neg = text_oi_list[idx - 3:idx]
+				# 	det_negation = self._func_det_negation(text_detect_neg)
+				# 	if not det_negation:
+				# 		adenocarcinoma_ind = 1
 
 				primary_grade = None; secondary_grade = None; num_pos_core = None; num_total_core = None; max_core_involve = [];
 				# Obtain overall grade (gleason), each biopsy grade, and number of positive cores / total cores 
@@ -319,40 +319,40 @@ class BiopsyGradeExtractor:
 				max_core_involve_list.append(None)
 
 			# store histology
-			if adenocarcinoma_ind:
-				adenocarcinoma.append(1)
-			else:
-				adenocarcinoma.append(0)
+			# if adenocarcinoma_ind:
+			# 	adenocarcinoma.append(1)
+			# else:
+			# 	adenocarcinoma.append(0)
 
-			if small_cell_carc_ind and not adenocarcinoma_ind:
-				small_cell_carc.append(1)
-			else:
-				small_cell_carc.append(0)
+			# if small_cell_carc_ind and not adenocarcinoma_ind:
+			# 	small_cell_carc.append(1)
+			# else:
+			# 	small_cell_carc.append(0)
 				
-			if neuroendocrine_carc_ind and not adenocarcinoma_ind:
-				neuroendocrine_carc.append(1)
-			else:
-				neuroendocrine_carc.append(0)
+			# if neuroendocrine_carc_ind and not adenocarcinoma_ind:
+			# 	neuroendocrine_carc.append(1)
+			# else:
+			# 	neuroendocrine_carc.append(0)
 
 		# store abstracted biopsy features into the main df
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_pos_cores'] = num_pos_cores_list
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_pos_cores'] = num_pos_cores_list
 		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'primary_grade'] = primary_grade_list
 		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'secondary_grade'] = secondary_grade_list
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'overall_grade_group'] = overall_grade_list
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'overall_gs'] = overall_gs_list
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'overall_grade_group'] = overall_grade_list
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'overall_gs'] = overall_gs_list
 		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'overall_grade_merged'] = overall_grade_merged_list
 
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'benign'] = benign_list
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'benign'] = benign_list
 
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_pos_cores'] = num_pos_cores_list
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_total_core'] = num_total_core_list
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_pos_cores_sum'] = num_pos_cores_sum_list
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_total_core_sum'] = num_total_core_sum_list
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_pos_cores'] = num_pos_cores_list
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_total_core'] = num_total_core_list
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_pos_cores_sum'] = num_pos_cores_sum_list
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'num_total_core_sum'] = num_total_core_sum_list
 
 		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'max_core_involve'] = max_core_involve_list
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'small_cell_carc'] = small_cell_carc
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'neuroendocrine_carc'] = neuroendocrine_carc
-		self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'adenocarcinoma'] = adenocarcinoma		
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'small_cell_carc'] = small_cell_carc
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'neuroendocrine_carc'] = neuroendocrine_carc
+		# self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.index, 'adenocarcinoma'] = adenocarcinoma		
 
 		print('\n')
 		print('Extraction complete.')
@@ -403,23 +403,23 @@ class BiopsyGradeExtractor:
 						else:
 							max_core_involve_all_list += val_sub
 			df_count_stats_max_core_involve = pd.value_counts(max_core_involve_all_list, sort = True)		
-			print('Counts per each max core involvement : ')
-			print(df_count_stats_max_core_involve)
-			print('\n')
+			# print('Counts per each max core involvement : ')
+			# print(df_count_stats_max_core_involve)
+			# print('\n')
 			# remove outliers
 			reports_mci_oi = set(self.df_pathology_with_biopsy.Report_Number.values) - set(outlier_report_list)
 			self.df_pathology_with_biopsy = self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.Report_Number.isin(reports_mci_oi)]
 
 			# benign stats
-			df_count_stats_benign = pd.value_counts(self.df_pathology_with_biopsy.benign.values, sort = True)
-			print('Number of reports with benign indicator 1 (postiive) or 0 (negative) : ')
-			print(df_count_stats_benign)
-			print('total = ', sum(df_count_stats_benign.values))
-			print('\n')
+			# df_count_stats_benign = pd.value_counts(self.df_pathology_with_biopsy.benign.values, sort = True)
+			# print('Number of reports with benign indicator 1 (postiive) or 0 (negative) : ')
+			# print(df_count_stats_benign)
+			# print('total = ', sum(df_count_stats_benign.values))
+			# print('\n')
 			
 			# overall grade stats
 			df_count_stats_overall_grade = pd.value_counts(self.df_pathology_with_biopsy.overall_grade_merged.values, sort = True)
-			df_count_stats_num_pos_cores = pd.value_counts(self.df_pathology_with_biopsy.num_pos_cores_sum.values, sort = True)
+			# df_count_stats_num_pos_cores = pd.value_counts(self.df_pathology_with_biopsy.num_pos_cores_sum.values, sort = True)
 			# outlier filtering
 			# num_pos_sum_outliers = [20, 30]
 			# num_pos_cores_oi = set(df_count_stats_num_pos_cores.loc[df_count_stats_num_pos_cores.values >= 9].index) | set([None]) - set(num_pos_sum_outliers)
@@ -432,37 +432,37 @@ class BiopsyGradeExtractor:
 			# self.df_pathology_with_biopsy = self.df_pathology_with_biopsy.loc[self.df_pathology_with_biopsy.num_total_core_sum.isin(num_total_cores_oi)]
 
 			# print stats
-			df_count_stats_num_pos_cores = pd.value_counts(self.df_pathology_with_biopsy.num_pos_cores_sum.values, sort = True)
-			df_count_stats_num_total_cores = pd.value_counts(self.df_pathology_with_biopsy.num_total_core_sum.values, sort = True)
-			print('Number of reports per each # of positive cores : ')
-			print(df_count_stats_num_pos_cores)
-			print('Number of reports per each # of total cores : ')
-			print(df_count_stats_num_total_cores)
+			# df_count_stats_num_pos_cores = pd.value_counts(self.df_pathology_with_biopsy.num_pos_cores_sum.values, sort = True)
+			# df_count_stats_num_total_cores = pd.value_counts(self.df_pathology_with_biopsy.num_total_core_sum.values, sort = True)
+			# print('Number of reports per each # of positive cores : ')
+			# print(df_count_stats_num_pos_cores)
+			# print('Number of reports per each # of total cores : ')
+			# print(df_count_stats_num_total_cores)
 			print('Number of reports per each overall grade : ')
 			print(df_count_stats_overall_grade)
 			print('total = ', df_count_stats_overall_grade.sum())
 			print('Number of unique biopsy reports : ', len(self.df_pathology_with_biopsy))
-			print('Number of unique biopsy reports per center : ')
-			print(pd.value_counts(self.df_pathology_with_biopsy.MRN_Type.values, sort = True))
+			# print('Number of unique biopsy reports per center : ')
+			# print(pd.value_counts(self.df_pathology_with_biopsy.MRN_Type.values, sort = True))
 			print('Number of unique patients : ', len(set(self.df_pathology_with_biopsy.EMPI.values)))
 
-			df_pathology_with_biopsy_oi_overall_grade = self.df_pathology_with_biopsy.dropna(subset = ['overall_grade_group'])
-			print('Number of unique patients with overall grade : ', len(set(df_pathology_with_biopsy_oi_overall_grade.EMPI.values)))
-			df_pathology_with_biopsy_oi_with_num_cores_involved = df_pathology_with_biopsy_oi_overall_grade.dropna(subset = ['num_pos_cores'])
-			df_pathology_with_biopsy_oi_with_num_cores_involved_wo_grade = self.df_pathology_with_biopsy.dropna(subset = ['num_pos_cores'])
-			print('Number of unique patients with overall grade, and num. of positive and total cores : ', len(set(df_pathology_with_biopsy_oi_with_num_cores_involved.EMPI.values)))
-			print('Number of unique patients with num. of positive and total cores : ', len(set(df_pathology_with_biopsy_oi_with_num_cores_involved_wo_grade.EMPI.values)))
+			df_pathology_with_biopsy_oi_overall_grade = self.df_pathology_with_biopsy.dropna(subset = ['overall_grade_merged'])
+			print('Number of unique patients with overall_grade_merged : ', len(set(df_pathology_with_biopsy_oi_overall_grade.EMPI.values)))
+			# df_pathology_with_biopsy_oi_with_num_cores_involved = df_pathology_with_biopsy_oi_overall_grade.dropna(subset = ['num_pos_cores'])
+			# df_pathology_with_biopsy_oi_with_num_cores_involved_wo_grade = self.df_pathology_with_biopsy.dropna(subset = ['num_pos_cores'])
+			# print('Number of unique patients with overall grade, and num. of positive and total cores : ', len(set(df_pathology_with_biopsy_oi_with_num_cores_involved.EMPI.values)))
+			# print('Number of unique patients with num. of positive and total cores : ', len(set(df_pathology_with_biopsy_oi_with_num_cores_involved_wo_grade.EMPI.values)))
 
 
-			df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve = df_pathology_with_biopsy_oi_with_num_cores_involved.dropna(subset = ['max_core_involve'])
-			print('Number of unique patients with overall grade, num. of positive and total cores, and maximum core involvement : ', len(set(df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve.EMPI.values)))
-			df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve_benign = df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve.dropna(subset = ['benign'])
-			print('Number of unique patients with overall grade, num. of positive and total cores, maximum core involvement, and benign : ', len(set(df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve_benign.EMPI.values)))
-			print('\n')
+			# df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve = df_pathology_with_biopsy_oi_with_num_cores_involved.dropna(subset = ['max_core_involve'])
+			# print('Number of unique patients with overall grade, num. of positive and total cores, and maximum core involvement : ', len(set(df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve.EMPI.values)))
+			# df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve_benign = df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve.dropna(subset = ['benign'])
+			# print('Number of unique patients with overall grade, num. of positive and total cores, maximum core involvement, and benign : ', len(set(df_pathology_with_biopsy_oi_with_num_cores_involved_max_core_involve_benign.EMPI.values)))
+			# print('\n')
 			# print('\n')
 
 		if return_summary_df:
-			return self.df_pathology_with_biopsy
+			return self.df_pathology_with_biopsy.drop('max_core_involve',axis = 1)
 		else:
 			return None
 
