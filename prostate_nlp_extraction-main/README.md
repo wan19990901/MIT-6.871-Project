@@ -10,6 +10,8 @@ Grade group is considered a major variable of interest when building the a model
 ## *Data source*
 Research Patient Data Registry (RPDR) Centralized clinical data registry, or data warehouse, that gathers clinical information from various Mass General Brigham hospital systems Queried in September 2020 for patient with diagnosis code or reason for visit of prostate cancer at any time. Query retrieved 88,212 unique patients.
 
+Link : https://www.dropbox.com/s/w5m6qm4wous7ao6/df_pathology_biopsy_final.csv?dl=0
+
 ## *Materials and Methods*
 
 A rule based method was developed in the python program in order to extract the grade group from the text. Specifically, the rule is as follow:
