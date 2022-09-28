@@ -7,9 +7,6 @@ BiopsyGradeExtractor
 - validate result
 	user oriented evaluation of the algorithm
 
-TODO :
-- pT stage extractor from Radical prostetectomy
-- PSA level extractor from progress notes (potentially)
 
 """
 
