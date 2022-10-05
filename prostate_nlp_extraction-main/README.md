@@ -8,6 +8,7 @@
 Grade group is considered a major variable of interest when building the a model on prostate cancer. While it's often hard to direcly obtain the grade group or gleason score, the development of natural language proecssing and the abduance of Prostate biopsy pathology report data make it possible for us to extract information without too much manual work. We proposed a program here to to accurately patients' grade group (or gleason score)using information from their biopsy pathology report.
 
 ## *Data source*
+
 Research Patient Data Registry (RPDR) Centralized clinical data registry, or data warehouse, that gathers clinical information from various Mass General Brigham hospital systems Queried in September 2020 for patient with diagnosis code or reason for visit of prostate cancer at any time. Query retrieved 88,212 unique patients.
 
 Link : https://www.dropbox.com/s/w5m6qm4wous7ao6/df_pathology_biopsy_final.csv?dl=0
@@ -19,6 +20,8 @@ A rule based method was developed in the python program in order to extract the 
 ### *1: Reports Specification*
 
 We did a filter on report at the very first step. Specifically, we exclude all reports containing the phrase "prostatectomy" or "bone marrow" and then we include the report that contains the both the substring "prost" and one of the substring from "needle","core", or "biops". Also the report should be surgical pyhology report as indicated in the dataset description.
+
+(*Note that this rule is deleted is the newest version as it seems to only appy to the dataset intae was using*)
 
 ### *2: Grade Group and Gleason Score*
 

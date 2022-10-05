@@ -1,5 +1,5 @@
 """
-Oct. 17, 2021
+Oct. 4, 2022
 
 BiopsyGradeExtractor
 - fit
@@ -41,7 +41,7 @@ class BiopsyGradeExtractor:
 		"""
 		Iterate through reports and extract clinical concepts of interest
 		"""
-		directional_words = ['right', 'left']
+		directional_words = ['right', 'left','l','r']
 		# declare lists which store abstracted biopsy features
 		primary_grade_list = []; secondary_grade_list = []; overall_grade_list = []; overall_grade_merged_list = []; overall_gs_list = []; 
 
@@ -87,7 +87,6 @@ class BiopsyGradeExtractor:
 							dash_counter += 1
 						if 'of' in char_dash:
 							of_counter += 1
-
 					if slash_counter == 1 and plus_sign_counter == 0 and dash_counter == 0 and of_counter == 0:
 						only_one_slash = 1						
 
@@ -182,14 +181,14 @@ class BiopsyGradeExtractor:
 								
 						# vi) when it is represented as z (x + y), where z is the total gleason score, x is the primary grade, and y is the secondary grade
 						if char.isdigit() and idx_char < len(raw_gleason_text) - 5:
-							if raw_gleason_text[idx_char + 1] == '(':								
+							if raw_gleason_text[idx_char + 1] == '(':							
 								if raw_gleason_text[idx_char + 2].isdigit() and raw_gleason_text[idx_char + 3] == '+' and raw_gleason_text[idx_char + 4].isdigit():
 									primary_grade = int(raw_gleason_text[idx_char + 2])
 									secondary_grade = int(raw_gleason_text[idx_char + 4])
 									break
 
 
-
+									
 				# get overall garde group based on abstracted gleason scores
 				# https://www.pcf.org/about-prostate-cancer/diagnosis-staging-prostate-cancer/gleason-score-isup-grade/
 				if primary_grade is not None and secondary_grade is not None:
@@ -209,7 +208,6 @@ class BiopsyGradeExtractor:
 						overall_grade_group = 5
 					else:
 						overall_grade_group = None
-
 					# update the grade group lists
 					if overall_grade_group is not None:
 						primary_grade_list_local.append(primary_grade)
@@ -219,7 +217,6 @@ class BiopsyGradeExtractor:
 				else:
 					overall_grade_group = None
 			if(len(overall_grade_list_local) == 0):
-				print(1)
 				if('well-differentiated' in text_oi):
 					overall_grade_list_local.append(1)
 				elif('moderately differentiated' in text_oi):
@@ -230,8 +227,6 @@ class BiopsyGradeExtractor:
 					overall_grade_list_local.append(4)
 				elif('gleason score is not considered reliable after hormonal treatment and thus not rendered' in text_oi):
 					overall_grade_list_local.append(97)
-				else:
-					print(2)
 
 			# store abstracted biopsy features
 			# store local (i.e. each tissue) primary grades, secondary grades, overall grade groups
@@ -263,10 +258,10 @@ class BiopsyGradeExtractor:
 
 		"""
 		# get all the reports with the following keywords : needle, core, biops, prost
-		idx_oi = [idx for idx, report in enumerate(df_pathology.Report_Text.values) if 'needle' in report.lower() or 'core' in report.lower() or 'biops' in report.lower() and 'prost' in report.lower()]
-		# exclude all the reports with the following keywords : prostatectomy, bone marrow
-		idx_to_exclude = [idx for idx, report in enumerate(df_pathology.Report_Text.values) if 'prostatectomy' in report.lower() or 'bone marrow' in report.lower(	)]# or 'nephrectomy' in report.lower() or 'cystectomy' in report.lower() or 'cystoprostatectomy' in report.lower() or 'ureter' in report.lower()] # or 'prostate, radical resection' in report.lower()]
-		self.df_pathology_with_biopsy = df_pathology.iloc[np.sort(list(set(idx_oi) - set(idx_to_exclude)))].copy()	
+		# idx_oi = [idx for idx, report in enumerate(df_pathology.Report_Text.values) if 'needle' in report.lower() or 'core' in report.lower() or 'biops' in report.lower() and 'prost' in report.lower()]
+		# # exclude all the reports with the following keywords : prostatectomy, bone marrow
+		# idx_to_exclude = [idx for idx, report in enumerate(df_pathology.Report_Text.values) if 'prostatectomy' in report.lower() or 'bone marrow' in report.lower(	)]# or 'nephrectomy' in report.lower() or 'cystectomy' in report.lower() or 'cystoprostatectomy' in report.lower() or 'ureter' in report.lower()] # or 'prostate, radical resection' in report.lower()]
+		self.df_pathology_with_biopsy = df_pathology	
 		# extract grade
 		self._extract_biopsy_grades()
 
