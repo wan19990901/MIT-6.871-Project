@@ -37,7 +37,7 @@ When the primary grade (x) and secondary grade (y) are reported, a grade group i
 
 get all the reports with the following keywords : needle, core, biops, prost,exclude all the reports with the following keywords : prostatectomy, bone marrow, as these two steps would give us all the reports with biopsy.
 
-Find the word gleason; we need to exclude false positive triggered # by M.D. Gleason and found directional word like left or right
+Find the word gleason; we need to exclude false positive triggered # by M.D. Gleason and found directional word like left or right(Left, RIght, L,R)
 \
 Once the condition is met: 
 

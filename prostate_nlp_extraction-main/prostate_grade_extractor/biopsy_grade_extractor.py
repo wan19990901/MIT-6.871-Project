@@ -258,9 +258,10 @@ class BiopsyGradeExtractor:
 
 		"""
 		# get all the reports with the following keywords : needle, core, biops, prost
-		# idx_oi = [idx for idx, report in enumerate(df_pathology.Report_Text.values) if 'needle' in report.lower() or 'core' in report.lower() or 'biops' in report.lower() and 'prost' in report.lower()]
-		# # exclude all the reports with the following keywords : prostatectomy, bone marrow
-		# idx_to_exclude = [idx for idx, report in enumerate(df_pathology.Report_Text.values) if 'prostatectomy' in report.lower() or 'bone marrow' in report.lower(	)]# or 'nephrectomy' in report.lower() or 'cystectomy' in report.lower() or 'cystoprostatectomy' in report.lower() or 'ureter' in report.lower()] # or 'prostate, radical resection' in report.lower()]
+		idx_oi = [idx for idx, report in enumerate(df_pathology.Report_Text.values) if 'needle' in report.lower() or 'core' in report.lower() or 'biops' in report.lower() and 'prost' in report.lower()]
+		print(1)
+		# exclude all the reports with the following keywords : prostatectomy, bone marrow
+		idx_to_exclude = [idx for idx, report in enumerate(df_pathology.Report_Text.values) if 'prostatectomy' in report.lower() or 'bone marrow' in report.lower(	)]# or 'nephrectomy' in report.lower() or 'cystectomy' in report.lower() or 'cystoprostatectomy' in report.lower() or 'ureter' in report.lower()] # or 'prostate, radical resection' in report.lower()]
 		self.df_pathology_with_biopsy = df_pathology	
 		# extract grade
 		self._extract_biopsy_grades()
