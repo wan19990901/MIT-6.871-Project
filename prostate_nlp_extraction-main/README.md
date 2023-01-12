@@ -1,6 +1,6 @@
 # Prostate NLP extraction 
 
-# Add documentation on how to use these code and how the rules are developed.
+# TODO: Add documentation on how to use these code and how the rules are developed.
 
 # Abstract
 
